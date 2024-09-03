@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style> 
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            padding: 0.5rem 1rem;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        .container {
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+        
+        h2, h3 {
+            color: black;
+        }
+    
+        label {
+            color: black;
+        }
+    
+        /* 3D Border Effect for the Registration Form */
+        #registrationContainer {
+            border: 3px solid #cfcfcf;
+            box-shadow: inset 3px 3px 8px #b3b3b3, inset -3px -3px 8px #ffffff;
+        }
+
+        .form-label, .student-info, .fees-info, .table th, .table td {
+            color: black;
+        }
+    </style>
+</head>
+<body style="background-color: #d8315b;">
+    <header style="background-color: black; color: white;">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+            <a class="navbar-brand" href="home.html">Campus Fee Payment Portal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="payment.html">Payment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="chat.html">Chat</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Registration Form -->
+    <div class="container mt-5" id="registrationContainer">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center">Registration</h2>
+                <form id="registrationForm">
+                    <div class="mb-3">
+                        <label for="registerUserType" class="form-label">Register as</label>
+                        <select class="form-select" id="registerUserType">
+                            <option value="student">Student</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="registerName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="registerEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerMobile" class="form-label">Mobile No</label>
+                        <input type="text" class="form-control" id="registerMobile" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const userType = document.getElementById('registerUserType').value;
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const mobile = document.getElementById('registerMobile').value;
+
+            if (userType === 'student') {
+                alert('Student Registered Successfully: ' + name);
+            } else if (userType === 'admin') {
+                alert('Admin Registered Successfully: ' + name);
+            }
+
+            // Clear the form after submission
+            document.getElementById('registrationForm').reset();
+        });
+    </script>
+</body>
+</html>

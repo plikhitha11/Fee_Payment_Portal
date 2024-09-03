@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style> 
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            padding: 0.5rem 1rem;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        /* Style for the outline around the student info */
+        .student-dashboard {
+            border: 2px solid #007bff; /* Outline color */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .student-info, .fees-info {
+            margin-bottom: 20px;
+        }
+
+        .student-info div, .fees-info div {
+            margin-bottom: 10px;
+        }
+       
+        
+        
+        
+    </style>
+    <style>
+        /* General Styles */
+        .container {
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+        
+        h2, h3 {
+            color: black;
+        }
+    
+        label {
+            color: black;
+        }
+    
+        /* 3D Border Effect for the Login Form */
+        #loginContainer {
+            border: 3px solid #cfcfcf;
+            box-shadow: inset 3px 3px 8px #b3b3b3, inset -3px -3px 8px #ffffff;
+        }
+    
+        /* 3D Border Effect for the Student Dashboard */
+        #studentTableContainer {
+            border: 3px solid #cfcfcf;
+            box-shadow: inset 3px 3px 8px #b3b3b3, inset -3px -3px 8px #ffffff;
+        }
+    
+        /* 3D Border Effect for the Admin Dashboard */
+        #adminTableContainer {
+            border: 3px solid #cfcfcf;
+            box-shadow: inset 3px 3px 8px #b3b3b3, inset -3px -3px 8px #ffffff;
+        }
+    
+        .form-label, .student-info, .fees-info, .table th, .table td {
+            color: black;
+        }
+    </style>
+   
+    
+</head>
+<body style="background-color: #d8315b;">
+    <header style="background-color: black; color: white;">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+            <a class="navbar-brand" href="home.html">Campus Fee Payment Portal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="payment.html">Payment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="chat.html">Chat</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+ <!-- Login Form -->
+ <div class="container mt-5" id="loginContainer">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">Login</h2>
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label for="userType" class="form-label">Login as</label>
+                    <select class="form-select" id="userType">
+                        <option value="student">Student</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Student Dashboard -->
+<div id="studentTableContainer" class="container mt-5" style="display: none;">
+    <div class="student-dashboard">
+        <h3 class="text-center">Student Dashboard</h3>
+        <div class="row student-info">
+            <div class="col-md-4"><strong>Student Name:</strong> <span id="studentName"></span></div>
+            <div class="col-md-4"><strong>Mobile No:</strong> <span id="studentMobile"></span></div>
+            <div class="col-md-4"><strong>Email:</strong> <span id="studentEmail"></span></div>
+            <div class="col-md-4"><strong>ID:</strong> <span id="studentID"></span></div>
+            <div class="col-md-4"><strong>Year:</strong> <span id="studentYear"></span></div>
+        </div>
+        <div class="row fees-info">
+            <div class="col-md-6"><strong>Total Fee:</strong> <span id="totalFee"></span></div>
+            <div class="col-md-6"><strong>Paid Fee:</strong> <span id="paidFee"></span></div>
+            <div class="col-md-6"><strong>Balance Fee:</strong> <span id="balanceFee"></span></div>
+            <div class="col-md-6"><strong>Due Date:</strong> <span id="dueDate"></span></div>
+        </div>
+    </div>
+</div>
+
+<!-- Admin Dashboard -->
+<div id="adminTableContainer" class="container mt-5" style="display: none;">
+    <h3 class="text-center">Admin Dashboard</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Mobile No</th>
+                <th>Email</th>
+                <th>Fees</th>
+            </tr>
+        </thead>
+        <tbody id="adminTableBody">
+            <!-- Admin data will be inserted here dynamically -->
+        </tbody>
+    </table>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            const userType = document.getElementById('userType').value;
+    
+            if (userType === 'student') {
+                displayStudentDashboard();
+            } else if (userType === 'admin') {
+                displayAdminTable();
+            }
+    
+            // Hide the login form
+            document.getElementById('loginContainer').style.display = 'none';
+        });
+    
+        function displayStudentDashboard() {
+            // Show student dashboard
+            document.getElementById('studentTableContainer').style.display = 'block';
+    
+            const studentData = {
+                name: 'John Doe',
+                mobile: '123-456-7890',
+                email: 'john.doe@gmail.com',
+                id: 'STU123456',
+                year: 3,
+                totalFee: '50,000',
+                paidFee: '30,000',
+                balanceFee: '20,000',
+                dueDate: '2024-12-31'
+            };
+    
+            document.getElementById('studentName').textContent = studentData.name;
+            document.getElementById('studentMobile').textContent = studentData.mobile;
+            document.getElementById('studentEmail').textContent = studentData.email;
+            document.getElementById('studentID').textContent = studentData.id;
+            document.getElementById('studentYear').textContent = studentData.year;
+            document.getElementById('totalFee').textContent = studentData.totalFee;
+            document.getElementById('paidFee').textContent = studentData.paidFee;
+            document.getElementById('balanceFee').textContent = studentData.balanceFee;
+            document.getElementById('dueDate').textContent = studentData.dueDate;
+        }
+    
+        function displayAdminTable() {
+            // Show admin table container
+            document.getElementById('adminTableContainer').style.display = 'block';
+    
+            const adminData = [
+                { sNo: 1, name: 'John Doe', mobile: '123-456-7890', email: 'john@gmail.com', feesPaid: true },
+                { sNo: 2, name: 'Jane Smith', mobile: '987-654-3210', email: 'jane@gmail.com', feesPaid: false },
+                { sNo: 3, name: 'Michael Johnson', mobile: '456-789-0123', email: 'michael@gmail.com', feesPaid: true },
+                { sNo: 4, name: 'Emily Davis', mobile: '789-012-3456', email: 'emily@gmail.com', feesPaid: false },
+                { sNo: 5, name: 'William Brown', mobile: '321-654-0987', email: 'william@gmail.com', feesPaid: true },
+                { sNo: 6, name: 'Olivia Wilson', mobile: '654-321-0987', email: 'olivia@gmail.com', feesPaid: false },
+                { sNo: 7, name: 'James Jones', mobile: '147-258-3690', email: 'james@gmail.com', feesPaid: true },
+                { sNo: 8, name: 'Sophia Garcia', mobile: '258-369-1470', email: 'sophia@gmail.com', feesPaid: false },
+                { sNo: 9, name: 'Lucas Martinez', mobile: '369-147-2580', email: 'lucas@gmail.com', feesPaid: true },
+                { sNo: 10, name: 'Isabella Anderson', mobile: '741-852-9630', email: 'isabella@gmail.com', feesPaid: false }
+            ];
+    
+            const tableBody = document.getElementById('adminTableBody');
+            tableBody.innerHTML = ''; // Clear any existing data
+    
+            adminData.forEach(student => {
+                const feeStatus = student.feesPaid ? `<span style="color: green;">Paid</span>` : `<span style="color: red;">Not Paid</span>`;
+                const row = `<tr>
+                    <td>${student.sNo}</td>
+                    <td>${student.name}</td>
+                    <td>${student.mobile}</td>
+                    <td>${student.email}</td>
+                    <td>${feeStatus}</td>
+                </tr>`;
+                tableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+    </script>
+    
+</body>
+</html>
